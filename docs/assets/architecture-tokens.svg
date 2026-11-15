@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" width="1200" height="430" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1200" y2="430" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0B0D14" />
+      <stop offset="50%" stop-color="#111524" />
+      <stop offset="100%" stop-color="#0D0F18" />
+    </linearGradient>
+    <radialGradient id="glowBlue" cx="0.22" cy="0.25" r="0.45">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="glowPurple" cx="0.78" cy="0.7" r="0.48">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="cardStroke" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+    <linearGradient id="arrowBlue" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#94A3B8" fill-opacity="0.12" />
+    </pattern>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#8B5CF6" />
+    </marker>
+    <marker id="arrowHeadGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 8.5 5 L 0 8.5 z" fill="#10B981" />
+    </marker>
+  </defs>
+
+  <!-- Outer Studio Frame -->
+  <rect width="1200" height="430" rx="20" fill="url(#bgGrad)" />
+  <rect width="1200" height="430" rx="20" fill="url(#dots)" />
+  <rect width="1200" height="430" rx="20" fill="url(#glowBlue)" />
+  <rect width="1200" height="430" rx="20" fill="url(#glowPurple)" />
+  <rect x="0.75" y="0.75" width="1198.5" height="428.5" rx="19.25" stroke="#262D40" stroke-width="1.5" />
+
+  <!-- Section Eyebrow & Title -->
+  <rect x="36" y="28" width="186" height="24" rx="12" fill="#1E293B" stroke="#334155" />
+  <circle cx="50" cy="40" r="4" fill="#3B82F6" />
+  <text x="62" y="44" fill="#93C5FD" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="11" font-weight="600" letter-spacing="0.06em">3-TIER TOKEN PIPELINE</text>
+  <text x="236" y="45" fill="#F8FAFC" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="15" font-weight="600">Deterministic Alias Resolution &amp; Mode-Agnostic Component Inheritance</text>
+
+  <!-- TIER 1: PRIMITIVES -->
+  <g transform="translate(36, 82)">
+    <rect width="246" height="296" rx="14" fill="#131826" stroke="url(#cardStroke)" stroke-width="1.5" />
+    <rect x="16" y="16" width="84" height="22" rx="6" fill="#1D4ED8" fill-opacity="0.22" stroke="#3B82F6" stroke-opacity="0.45" />
+    <text x="26" y="31" fill="#60A5FA" font-family="Inter, sans-serif" font-size="11" font-weight="700">TIER 1 · BASE</text>
+    <text x="16" y="62" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="16" font-weight="700">{Namespace}/Primitives</text>
+    <text x="16" y="82" fill="#94A3B8" font-family="Inter, sans-serif" font-size="12">Perceptual OKLCH ramps &amp; scales</text>
+
+    <!-- Swatch Ramp -->
+    <g transform="translate(16, 98)">
+      <rect x="0" y="0" width="18" height="18" rx="4" fill="#EFF6FF" />
+      <rect x="21" y="0" width="18" height="18" rx="4" fill="#DBEAFE" />
+      <rect x="42" y="0" width="18" height="18" rx="4" fill="#93C5FD" />
+      <rect x="63" y="0" width="18" height="18" rx="4" fill="#60A5FA" />
+      <rect x="84" y="0" width="18" height="18" rx="4" fill="#3B82F6" />
+      <rect x="105" y="0" width="18" height="18" rx="4" fill="#2563EB" />
+      <rect x="126" y="0" width="18" height="18" rx="4" fill="#1D4ED8" />
+      <rect x="147" y="0" width="18" height="18" rx="4" fill="#1E40AF" />
+      <rect x="168" y="0" width="18" height="18" rx="4" fill="#1E3A8A" />
+      <rect x="189" y="0" width="24" height="18" rx="4" fill="#172554" />
+    </g>
+
+    <!-- Token Rows -->
+    <g transform="translate(16, 132)" font-family="SFMono-Regular, Menlo, monospace" font-size="11">
+      <rect width="214" height="30" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="19" fill="#E2E8F0">color/brand/600</text>
+      <text x="156" y="19" fill="#60A5FA">#2563EB</text>
+
+      <rect y="38" width="214" height="30" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="57" fill="#E2E8F0">color/brand/400</text>
+      <text x="156" y="57" fill="#93C5FD">#60A5FA</text>
+
+      <rect y="76" width="214" height="30" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="95" fill="#E2E8F0">space/4</text>
+      <text x="172" y="95" fill="#94A3B8">16px</text>
+
+      <rect y="114" width="214" height="30" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="133" fill="#E2E8F0">radius/md</text>
+      <text x="178" y="133" fill="#94A3B8">6px</text>
+    </g>
+  </g>
+
+  <!-- Connector 1 -> 2 -->
+  <path d="M 284 230 L 324 230" stroke="url(#arrowBlue)" stroke-width="2" marker-end="url(#arrowHead)" />
+
+  <!-- TIER 2: SEMANTIC (LIGHT + DARK) -->
+  <g transform="translate(330, 82)">
+    <rect width="276" height="296" rx="14" fill="#131826" stroke="url(#cardStroke)" stroke-width="1.5" />
+    <rect x="16" y="16" width="142" height="22" rx="6" fill="#7C3AED" fill-opacity="0.22" stroke="#8B5CF6" stroke-opacity="0.5" />
+    <text x="26" y="31" fill="#C4B5FD" font-family="Inter, sans-serif" font-size="11" font-weight="700">TIER 2 · LIGHT &amp; DARK</text>
+    <text x="16" y="62" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="16" font-weight="700">{Namespace}/Semantic</text>
+    <text x="16" y="82" fill="#94A3B8" font-family="Inter, sans-serif" font-size="12">Cross-collection VARIABLE_ALIAS modes</text>
+
+    <!-- Mode Header Pills -->
+    <rect x="16" y="98" width="118" height="24" rx="6" fill="#F8FAFC" />
+    <text x="48" y="114" fill="#0F172A" font-family="Inter, sans-serif" font-size="11" font-weight="700">☀ Light</text>
+    <rect x="142" y="98" width="118" height="24" rx="6" fill="#09090B" stroke="#334155" />
+    <text x="176" y="114" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="11" font-weight="700">☾ Dark</text>
+
+    <!-- Alias Rows -->
+    <g transform="translate(16, 132)" font-family="SFMono-Regular, Menlo, monospace" font-size="10.5">
+      <rect width="244" height="44" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="18" fill="#E2E8F0" font-weight="600">action/primary/bg</text>
+      <text x="10" y="35" fill="#93C5FD">L: → brand/600</text>
+      <text x="132" y="35" fill="#C4B5FD">D: → brand/400</text>
+
+      <rect y="52" width="244" height="44" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="70" fill="#E2E8F0" font-weight="600">bg/surface/default</text>
+      <text x="10" y="87" fill="#93C5FD">L: → neutral/0</text>
+      <text x="132" y="87" fill="#C4B5FD">D: → neutral/900</text>
+
+      <rect y="104" width="244" height="44" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="122" fill="#E2E8F0" font-weight="600">text/primary</text>
+      <text x="10" y="139" fill="#93C5FD">L: → neutral/950</text>
+      <text x="132" y="139" fill="#C4B5FD">D: → neutral/50</text>
+    </g>
+  </g>
+
+  <!-- Connector 2 -> 3 -->
+  <path d="M 608 230 L 648 230" stroke="url(#arrowBlue)" stroke-width="2" marker-end="url(#arrowHead)" />
+
+  <!-- TIER 3: COMPONENT TOKENS -->
+  <g transform="translate(654, 82)">
+    <rect width="234" height="296" rx="14" fill="#131826" stroke="url(#cardStroke)" stroke-width="1.5" />
+    <rect x="16" y="16" width="112" height="22" rx="6" fill="#059669" fill-opacity="0.2" stroke="#10B981" stroke-opacity="0.45" />
+    <text x="26" y="31" fill="#6EE7B7" font-family="Inter, sans-serif" font-size="11" font-weight="700">TIER 3 · SCOPED</text>
+    <text x="16" y="62" fill="#F8FAFC" font-family="Inter, sans-serif" font-size="16" font-weight="700">{Namespace}/Component</text>
+    <text x="16" y="82" fill="#94A3B8" font-family="Inter, sans-serif" font-size="12">Inherits Light/Dark automatically</text>
+
+    <g transform="translate(16, 102)" font-family="SFMono-Regular, Menlo, monospace" font-size="10.5">
+      <rect width="202" height="42" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="17" fill="#6EE7B7">button/primary/bg</text>
+      <text x="10" y="33" fill="#94A3B8">→ action/primary/bg</text>
+
+      <rect y="50" width="202" height="42" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="67" fill="#6EE7B7">button/radius</text>
+      <text x="10" y="83" fill="#94A3B8">→ control/radius/md</text>
+
+      <rect y="100" width="202" height="42" rx="7" fill="#0D111C" stroke="#1E293B" />
+      <text x="10" y="117" fill="#6EE7B7">card/surface/bg</text>
+      <text x="10" y="133" fill="#94A3B8">→ bg/surface/default</text>
+
+      <rect y="150" width="202" height="30" rx="7" fill="#059669" fill-opacity="0.14" stroke="#10B981" stroke-opacity="0.35" />
+      <text x="12" y="169" fill="#A7F3D0" font-family="Inter, sans-serif" font-size="11" font-weight="600">✓ Zero Hard-Locked Modes</text>
+    </g>
+  </g>
+
+  <!-- Connectors 3 -> Outputs -->
+  <path d="M 890 165 L 930 165" stroke="#8B5CF6" stroke-width="2" marker-end="url(#arrowHead)" />
+  <path d="M 890 300 L 930 300" stroke="#10B981" stroke-width="2" marker-end="url(#arrowHeadGreen)" />
+
+  <!-- OUTPUT A: PROPSTAR 2D MATRIX -->
+  <g transform="translate(936, 82)">
+    <rect width="228" height="140" rx="14" fill="#17132A" stroke="#7C3AED" stroke-opacity="0.6" stroke-width="1.5" />
+    <text x="16" y="30" fill="#DDD6FE" font-family="Inter, sans-serif" font-size="13.5" font-weight="700">❖ Propstar 2D Matrix</text>
+    <text x="16" y="49" fill="#A78BFA" font-family="Inter, sans-serif" font-size="11">Native Auto Layout ComponentSet</text>
+    <!-- Mini Matrix Illustration -->
+    <rect x="16" y="62" width="196" height="62" rx="8" fill="#FFFFFF" />
+    <line x1="114" y1="62" x2="114" y2="124" stroke="#8A38F5" stroke-opacity="0.45" stroke-dasharray="3 3" />
+    <line x1="16" y1="93" x2="212" y2="93" stroke="#8A38F5" stroke-opacity="0.45" stroke-dasharray="3 3" />
+    <rect x="35" y="71" width="60" height="15" rx="4" fill="#2563EB" />
+    <rect x="133" y="71" width="60" height="15" rx="4" fill="#1D4ED8" />
+    <rect x="35" y="101" width="60" height="15" rx="4" fill="#F1F5F9" stroke="#CBD5E1" />
+    <rect x="133" y="101" width="60" height="15" rx="4" fill="#E2E8F0" stroke="#94A3B8" />
+  </g>
+
+  <!-- OUTPUT B: W3C DTCG JSON + LIVE DOCS -->
+  <g transform="translate(936, 238)">
+    <rect width="228" height="140" rx="14" fill="#10201D" stroke="#10B981" stroke-opacity="0.55" stroke-width="1.5" />
+    <text x="16" y="30" fill="#A7F3D0" font-family="Inter, sans-serif" font-size="13.5" font-weight="700">{ } Canonical DTCG Export</text>
+    <text x="16" y="49" fill="#6EE7B7" font-family="Inter, sans-serif" font-size="11">Verified Light/Dark JSON + Docs</text>
+    <rect x="16" y="62" width="196" height="62" rx="8" fill="#091311" stroke="#1E3A34" />
+    <text x="26" y="81" fill="#34D399" font-family="SFMono-Regular, Menlo, monospace" font-size="10">"$type": "color",</text>
+    <text x="26" y="97" fill="#93C5FD" font-family="SFMono-Regular, Menlo, monospace" font-size="10">"$value": "{color.brand.600}",</text>
+    <text x="26" y="113" fill="#A7F3D0" font-family="SFMono-Regular, Menlo, monospace" font-size="10">"verified": "218 resolutions"</text>
+  </g>
+</svg>
