@@ -1,0 +1,21 @@
+# Dependencies & Build Outputs
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Test & Coverage Artifacts
+coverage/
+playwright-report/
+test-results/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# OS & Editor Metadata
+.DS_Store
+*.log
+.idea/
+.vscode/*
+!.vscode/extensions.json

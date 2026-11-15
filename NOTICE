@@ -1,0 +1,39 @@
+Tokenloom (DS Forge — Deterministic Figma Design System Generator)
+Copyright (c) 2026 flukelaster and Tokenloom Contributors
+
+This repository is licensed under the MIT License (see LICENSE).
+
+=========================================================================
+Clean-Room Design Token & Recipe Provenance Notices
+=========================================================================
+
+DS Forge compiles clean-room design system token graphs and native Figma
+component recipes inspired by open-source UI libraries. No proprietary
+fonts, commercial Pro/Premium templates, or unlicensed third-party community
+files are bundled.
+
+1. shadcn/ui Adapter (libraries/shadcn)
+   - Upstream inspiration: https://github.com/shadcn-ui/ui (MIT License)
+   - Copyright (c) 2023 shadcn
+
+2. Ant Design v5 Adapter (libraries/antd)
+   - Upstream inspiration: https://github.com/ant-design/ant-design (MIT License)
+   - Copyright (c) 2015-present Ant UED
+
+3. Material UI Core v6 Adapter (libraries/mui)
+   - Upstream inspiration: https://github.com/mui/material-ui (MIT License — Core package only; strictly excludes MUI X Pro/Premium)
+   - Copyright (c) 2014 Call-Em-All
+
+4. Carbon Design System v11 Adapter (libraries/carbon)
+   - Upstream inspiration: https://github.com/carbon-design-system/carbon (Apache License 2.0)
+   - Copyright IBM Corp. 2016, 2024
+   - Modifications: Clean-room Figma Variable 3-tier mapping and Auto Layout
+     component recipes authored for Tokenloom DS Forge (2026).
+
+5. Roadmap Catalog Provenance Manifests (libraries/roadmap)
+   - Chakra UI (MIT — Copyright (c) 2019 Segun Adebayo)
+   - Mantine (MIT — Copyright (c) 2021 Vitaly Rtishchev)
+   - HeroUI Core (MIT — Copyright (c) 2024 HeroUI Inc.; excludes HeroUI Pro)
+   - Radix Themes (MIT — Copyright (c) 2023 WorkOS)
+   - Fluent UI Web v9 (MIT — Copyright (c) Microsoft Corporation)
+   - Material Web M3 (Apache License 2.0 — Copyright 2023 Google LLC)

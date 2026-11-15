@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "libraryId": "shadcn",
+  "packageVersion": "0.1.0",
+  "collections": {
+    "primitives": "Acme shadcn/ui/Primitives",
+    "semantic": "Acme shadcn/ui/Semantic",
+    "component": "Acme shadcn/ui/Component"
+  },
+  "counts": {
+    "tokens": 109,
+    "textStyles": 8,
+    "effectStyles": 4,
+    "userFacingComponents": 15,
+    "helperComponents": 8,
+    "totalVariants": 183,
+    "pages": 21,
+    "patterns": 3
+  },
+  "sampleResolvedTokens": {
+    "Light": {
+      "semantic.action.primary.bg": "#2563EB",
+      "semantic.action.primary.hover": "#1D4ED8",
+      "semantic.action.primary.pressed": "#1E40AF",
+      "semantic.action.primary.fg": "#FFFFFF",
+      "semantic.action.secondary.bg": "#F4F4F5",
+      "semantic.action.secondary.hover": "#E4E4E7"
+    },
+    "Dark": {
+      "semantic.action.primary.bg": "#60A5FA",
+      "semantic.action.primary.hover": "#93C5FD",
+      "semantic.action.primary.pressed": "#3B82F6",
+      "semantic.action.primary.fg": "#09090B",
+      "semantic.action.secondary.bg": "#27272A",
+      "semantic.action.secondary.hover": "#3F3F46"
+    }
+  }
+}

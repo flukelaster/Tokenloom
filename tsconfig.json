@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "types": ["node", "@figma/plugin-typings"],
+    "baseUrl": ".",
+    "paths": {
+      "@schema": ["packages/schema/src/index.ts"],
+      "@schema/*": ["packages/schema/src/*"],
+      "@engine": ["packages/engine/src/index.ts"],
+      "@engine/*": ["packages/engine/src/*"],
+      "@shared": ["src/shared/index.ts"],
+      "@shared/*": ["src/shared/*"],
+      "@libraries": ["libraries/index.ts"],
+      "@libraries/*": ["libraries/*"]
+    }
+  },
+  "include": [
+    "packages/**/*.ts",
+    "libraries/**/*.ts",
+    "libraries/**/*.json",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "scripts/**/*.ts",
+    "tests/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
