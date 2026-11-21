@@ -19,7 +19,7 @@ Generate native **3-tier Figma Variables**, **Propstar-style 2D Variant Matrices
 </p>
 
 <p>
-  <a href="https://github.com/flukelaster/Tokenloom/releases/latest"><img src="https://img.shields.io/badge/%E2%AC%87%20Download-Prebuilt%20Plugin-2563eb?style=for-the-badge" alt="Download prebuilt plugin" /></a>
+  <a href="https://github.com/flukelaster/Tokenloom/releases/latest/download/tokenloom-ds-forge.zip"><img src="https://img.shields.io/badge/%E2%AC%87%20Download-Prebuilt%20Plugin-2563eb?style=for-the-badge" alt="Download prebuilt plugin" /></a>
 </p>
 
 <p>
@@ -117,7 +117,7 @@ Updating an existing Design System never wipes out your team's work:
 
 ### Option A — Download prebuilt (no Node.js needed)
 
-1. Download `tokenloom-ds-forge-vX.Y.Z.zip` from the [latest Release](https://github.com/flukelaster/Tokenloom/releases/latest) and unzip it.
+1. [**Download `tokenloom-ds-forge.zip`**](https://github.com/flukelaster/Tokenloom/releases/latest/download/tokenloom-ds-forge.zip) (or browse the [latest Release](https://github.com/flukelaster/Tokenloom/releases/latest)) and unzip it.
 2. Jump to [Import into Figma Desktop](#2-import-into-figma-desktop) and select the unzipped `manifest.json`.
 
 > ⚠️ Don't use GitHub's **"Source code (zip)"** — it has no `dist/` folder, and Figma will show *"An error occurred while loading the plugin environment"*.
