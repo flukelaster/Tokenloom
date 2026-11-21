@@ -19,6 +19,10 @@ Generate native **3-tier Figma Variables**, **Propstar-style 2D Variant Matrices
 </p>
 
 <p>
+  <a href="https://github.com/flukelaster/Tokenloom/releases/latest"><img src="https://img.shields.io/badge/%E2%AC%87%20Download-Prebuilt%20Plugin-2563eb?style=for-the-badge" alt="Download prebuilt plugin" /></a>
+</p>
+
+<p>
   <a href="#quickstart">Quickstart</a> •
   <a href="#visual-tour">Visual Tour</a> •
   <a href="#variable-architecture">3-Tier Variables</a> •
@@ -110,6 +114,15 @@ Updating an existing Design System never wipes out your team's work:
 - **Node.js** `>= 20.0.0` and **pnpm** `>= 9.0.0`
 - **Figma Desktop** with a Design file inside a **Professional, Organization, or Education** team
   *(Figma Starter restricts Variable collections to 1 mode; DS Forge runs a clean zero-residue preflight probe before creating `Light` + `Dark` modes).*
+
+### Option A — Download prebuilt (no Node.js needed)
+
+1. Download `tokenloom-ds-forge-vX.Y.Z.zip` from the [latest Release](https://github.com/flukelaster/Tokenloom/releases/latest) and unzip it.
+2. Jump to [Import into Figma Desktop](#2-import-into-figma-desktop) and select the unzipped `manifest.json`.
+
+> ⚠️ Don't use GitHub's **"Source code (zip)"** — it has no `dist/` folder, and Figma will show *"An error occurred while loading the plugin environment"*.
+
+### Option B — Build from source
 
 ### 1. Clone, Install & Build
 
