@@ -1,0 +1,33 @@
+QA report — out.mp4  (30.0s analysed)
+
+[rhythm] 22 shots, lengths (s): [1.64, 1.64, 2.73, 2.18, 2.73, 2.18, 0.27, 0.27, 0.27, 0.27, 1.64, 1.09, 0.55, 0.55, 0.55, 0.55, 2.18, 1.64, 2.18, 1.64, 1.09, 2.19]
+
+[per shot]  luma  hue/sat  longest near-static (s)
+  01 open          0.06    224°/0.67  0.23
+  02 fabric        0.24    224°/0.60  0.20
+  03 title         0.10    225°/0.64  0.43
+  04 import        0.10    224°/0.56  0.33
+  05 library       0.09    223°/0.59  0.47
+  06 brand         0.12    222°/0.64  0.27
+  07a radius       0.73    225°/0.15  0.00
+  07b radius       0.48    267°/0.58  0.03
+  07c radius       0.45    226°/0.72  0.03
+  07d radius       0.56     39°/0.89  0.00
+  08 scope         0.10    228°/0.59  0.57
+  09 generate      0.12    225°/0.69  0.10
+  10a pages        0.45    221°/0.73  0.00
+  10b components   0.38    226°/0.69  0.00
+  10c variants     0.49    265°/0.58  0.00
+  10d variables    0.49    224°/0.66  0.00
+  11 tiers         0.08    229°/0.64  0.20
+  12 modes         0.53    227°/0.14  0.33
+  13 propstar      0.89    245°/0.08  0.20
+  14 diff          0.09    225°/0.61  0.33
+  15 quality       0.23    169°/0.69  0.23
+  16 end           0.09    214°/0.63  0.27
+
+[audio] transients checked at 23 cuts/hits; weak: none
+
+[warnings] none
+
+Not measured — check by eye: whether every shot comes from the subject's motifs, composition and text-entrance variety, readability.

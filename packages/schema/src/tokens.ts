@@ -164,6 +164,7 @@ export const TextStyleDefinitionSchema = z.object({
       lineHeight: z.string().optional(),
       letterSpacing: z.string().optional(),
       fontFamily: z.string().optional(),
+      fontWeight: z.string().optional(),
     })
     .optional(),
 });

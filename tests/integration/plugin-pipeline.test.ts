@@ -63,7 +63,7 @@ describe('Figma Plugin End-to-End Integration Pipeline (dynamic-page Runtime)', 
     // 2. Verify 3 Variable collections & Light/Dark modes
     const stats = harness.getStats();
     expect(stats.collections).toBe(3); // Zero leftover probe collections!
-    expect(stats.variables).toBe(109);
+    expect(stats.variables).toBe(113);
     expect(stats.componentSets).toBe(15);
     expect(stats.standaloneComponents).toBe(8); // 8 helper icons
     expect(stats.pages).toBe(22); // Initial Page 1 + 21 managed pages
@@ -103,6 +103,72 @@ describe('Figma Plugin End-to-End Integration Pipeline (dynamic-page Runtime)', 
     )) as FrameNode;
     expect(lightCol.explicitVariableModes?.[semanticCol.id]).toBe(semanticCol.modes[0].modeId);
     expect(darkCol.explicitVariableModes?.[semanticCol.id]).toBe(semanticCol.modes[1].modeId);
+
+    // 5b. Verify 01 Foundations generates structured Primitives Color, Semantic Color, Typography & Scales sheets
+    const primColorSheet = (await harness.figma.getNodeByIdAsync(
+      sys.objects['docs.foundations.colors.primitives'].figmaId,
+    )) as FrameNode;
+    const semColorSheet = (await harness.figma.getNodeByIdAsync(
+      sys.objects['docs.foundations.colors.semantic'].figmaId,
+    )) as FrameNode;
+    const typoSheet = (await harness.figma.getNodeByIdAsync(
+      sys.objects['docs.foundations.typography'].figmaId,
+    )) as FrameNode;
+    const scalesSheet = (await harness.figma.getNodeByIdAsync(
+      sys.objects['docs.foundations.scales'].figmaId,
+    )) as FrameNode;
+
+    for (const sheet of [primColorSheet, semColorSheet, typoSheet, scalesSheet]) {
+      expect(sheet).toBeDefined();
+      expect(sheet.clipsContent).toBe(false);
+      expect(sheet.width).toBe(1160);
+      expect(sheet.primaryAxisSizingMode).toBe('AUTO');
+      expect(sheet.counterAxisSizingMode).toBe('FIXED');
+    }
+
+    const primSplitTable = primColorSheet.children.find(
+      (c) => c.name === 'Variables Table · Primitives',
+    ) as FrameNode;
+    expect(primSplitTable).toBeDefined();
+    expect(primSplitTable.children.map((c) => c.name)).toEqual([
+      'Collection Sidebar',
+      'Sidebar Divider',
+      'Variables Rows',
+    ]);
+
+    const typoSplitTable = typoSheet.children.find(
+      (c) => c.name === 'Variables Table · Typography',
+    ) as FrameNode;
+    expect(typoSplitTable).toBeDefined();
+    const typoSidebar = typoSplitTable.children.find(
+      (c) => c.name === 'Collection Sidebar',
+    ) as FrameNode;
+    const typoFolderList = typoSidebar.children.find(
+      (c) => c.name === 'Folder Groups',
+    ) as FrameNode;
+    expect(typoFolderList.children.map((c) => c.name)).toEqual([
+      'Folder · font/family',
+      'Folder · font/weight',
+      'Folder · font/size',
+      'Folder · font/line-height',
+    ]);
+
+    const textStylesSection = typoSheet.children.find(
+      (c) => c.name === 'Text Styles Section',
+    ) as FrameNode;
+    const specimenTable = textStylesSection.children.find(
+      (c) => c.name === 'Text Styles Specimen Table',
+    ) as FrameNode;
+    expect(specimenTable).toBeDefined();
+    const specimenRows = specimenTable.children.filter((c) =>
+      c.name.startsWith('Specimen · '),
+    ) as FrameNode[];
+    expect(specimenRows).toHaveLength(8);
+    for (const specRow of specimenRows) {
+      const sampleCol = specRow.children.find((c) => c.name === 'Col · Sample') as FrameNode;
+      const sampleText = sampleCol.children[0] as TextNode;
+      expect(sampleText.textStyleId).toBeTruthy();
+    }
 
     // 6. Active page switched to 00 Start Here at completion
     expect(harness.figma.currentPage.name).toContain('00 Start Here');

@@ -3,6 +3,9 @@ import type { EffectStyleDefinition, TextStyleDefinition } from '@schema';
 export interface StandardStyleTokenRefs {
   fontSansTokenId: string;
   fontMonoTokenId: string;
+  fontWeightRegularTokenId?: string;
+  fontWeightMediumTokenId?: string;
+  fontWeightSemiboldTokenId?: string;
   fontSizeXsTokenId: string;
   fontSizeSmTokenId: string;
   fontSizeMdTokenId: string;
@@ -17,6 +20,10 @@ export interface StandardStyleTokenRefs {
 }
 
 export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyleDefinition[] {
+  const weightRegular = refs.fontWeightRegularTokenId ?? 'primitive.font.weight.regular';
+  const weightMedium = refs.fontWeightMediumTokenId ?? 'primitive.font.weight.medium';
+  const weightSemibold = refs.fontWeightSemiboldTokenId ?? 'primitive.font.weight.semibold';
+
   return [
     {
       logicalId: 'textstyle.heading.xl',
@@ -32,6 +39,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: -0.4,
       boundVariables: {
         fontFamily: refs.fontSansTokenId,
+        fontWeight: weightSemibold,
         fontSize: refs.fontSize2xlTokenId,
         lineHeight: refs.lineHeightRelaxedTokenId,
       },
@@ -50,6 +58,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: -0.2,
       boundVariables: {
         fontFamily: refs.fontSansTokenId,
+        fontWeight: weightSemibold,
         fontSize: refs.fontSizeXlTokenId,
       },
     },
@@ -67,6 +76,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: -0.1,
       boundVariables: {
         fontFamily: refs.fontSansTokenId,
+        fontWeight: weightSemibold,
         fontSize: refs.fontSizeLgTokenId,
         lineHeight: refs.lineHeightNormalTokenId,
       },
@@ -85,6 +95,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: 0,
       boundVariables: {
         fontFamily: refs.fontSansTokenId,
+        fontWeight: weightRegular,
         fontSize: refs.fontSizeMdTokenId,
         lineHeight: refs.lineHeightTightTokenId,
       },
@@ -103,6 +114,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: 0,
       boundVariables: {
         fontFamily: refs.fontSansTokenId,
+        fontWeight: weightRegular,
         fontSize: refs.fontSizeSmTokenId,
       },
     },
@@ -120,6 +132,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: 0,
       boundVariables: {
         fontFamily: refs.fontSansTokenId,
+        fontWeight: weightMedium,
         fontSize: refs.fontSizeMdTokenId,
         lineHeight: refs.lineHeightTightTokenId,
       },
@@ -138,6 +151,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: 0.1,
       boundVariables: {
         fontFamily: refs.fontSansTokenId,
+        fontWeight: weightMedium,
         fontSize: refs.fontSizeSmTokenId,
       },
     },
@@ -155,6 +169,7 @@ export function buildStandardTextStyles(refs: StandardStyleTokenRefs): TextStyle
       letterSpacingPx: 0,
       boundVariables: {
         fontFamily: refs.fontMonoTokenId,
+        fontWeight: weightRegular,
         fontSize: refs.fontSizeXsTokenId,
       },
     },

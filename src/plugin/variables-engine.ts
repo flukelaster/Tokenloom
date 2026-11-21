@@ -477,6 +477,16 @@ export async function materializeVariablesAndStyles(
           }
         }
       }
+      if (ts.boundVariables?.fontWeight) {
+        const v = variablesByLogicalId.get(ts.boundVariables.fontWeight);
+        if (v) {
+          try {
+            style.setBoundVariable('fontWeight', v);
+          } catch {
+            // Keep fontStyle fallback
+          }
+        }
+      }
 
       const hash = plan.textStyleHashes[ts.logicalId];
       setNodeManagedMeta(style, {

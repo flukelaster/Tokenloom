@@ -8,7 +8,7 @@
     "component": "Acme shadcn/ui/Component"
   },
   "counts": {
-    "tokens": 109,
+    "tokens": 113,
     "textStyles": 8,
     "effectStyles": 4,
     "userFacingComponents": 15,

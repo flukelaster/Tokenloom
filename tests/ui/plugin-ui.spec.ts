@@ -10,7 +10,7 @@ test.describe('DS Forge Plugin UI (Browser E2E)', () => {
     await expect(page.getByTestId('app-shell')).toBeVisible();
     await expect(page.getByTestId('footer-estimates')).toContainText('21 Pages');
     await expect(page.getByTestId('footer-estimates')).toContainText('15 Families');
-    await expect(page.getByTestId('footer-estimates')).toContainText('109 Variables');
+    await expect(page.getByTestId('footer-estimates')).toContainText('113 Variables');
 
     // Verify all 10 library inline SVG brand logos render cleanly offline
     for (const libId of [
@@ -144,7 +144,7 @@ test.describe('DS Forge Plugin UI (Browser E2E)', () => {
     await page.getByRole('button', { name: 'Export Tokens' }).click();
     const exportModal = page.getByTestId('export-tokens-modal');
     await expect(exportModal).toBeVisible();
-    await expect(exportModal).toContainText('Verified (218 Light/Dark resolutions)');
+    await expect(exportModal).toContainText('Verified (226 Light/Dark resolutions)');
     await page.getByTestId('close-export-btn').click();
     await expect(exportModal).toHaveCount(0);
 

@@ -13,6 +13,10 @@ import {
   resolveVariantComponent,
   type ComponentRenderContext,
 } from './components-engine';
+import {
+  FOUNDATIONS_SHEET_WIDTH,
+  renderFoundationsSpecificationSheets,
+} from './foundations-renderer';
 import { getNodeManagedMeta, setNodeManagedMeta } from './storage';
 
 async function createDocText(
@@ -68,7 +72,7 @@ async function createDocText(
  * computes exact stretched widths and multi-line text heights instead of keeping initial 100px widths.
  */
 function finalizeAutoLayoutStretch(container: FrameNode): void {
-  const walk = (node: SceneNode) => {
+  const walk = (node: SceneNode, parentLayoutMode: FrameNode['layoutMode']) => {
     let shouldStretch = 'layoutAlign' in node && node.layoutAlign === 'STRETCH';
     if (!shouldStretch) {
       try {
@@ -81,7 +85,13 @@ function finalizeAutoLayoutStretch(container: FrameNode): void {
       try {
         node.layoutAlign = 'STRETCH';
         if (node.type === 'FRAME' && node.layoutMode !== 'NONE') {
-          node.primaryAxisSizingMode = 'AUTO';
+          if (parentLayoutMode === 'VERTICAL' && node.layoutMode === 'VERTICAL') {
+            node.primaryAxisSizingMode = 'AUTO';
+          } else if (parentLayoutMode === 'VERTICAL' && node.layoutMode === 'HORIZONTAL') {
+            node.counterAxisSizingMode = 'AUTO';
+          } else if (parentLayoutMode === 'HORIZONTAL' && node.layoutMode === 'HORIZONTAL') {
+            node.primaryAxisSizingMode = 'AUTO';
+          }
         }
         if (node.type === 'TEXT') {
           node.textAutoResize = 'HEIGHT';
@@ -91,14 +101,15 @@ function finalizeAutoLayoutStretch(container: FrameNode): void {
       }
     }
     if ('children' in node && node.type !== 'INSTANCE') {
+      const nextParentMode = node.type === 'FRAME' ? node.layoutMode : 'NONE';
       for (const child of node.children) {
-        walk(child);
+        walk(child, nextParentMode);
       }
     }
   };
 
   for (const child of container.children) {
-    walk(child);
+    walk(child, container.layoutMode);
   }
 }
 
@@ -208,6 +219,7 @@ async function ensurePreservedCustomNotesFrame(
   logicalId: string,
   yOffset: number,
   ctx: ComponentRenderContext,
+  width = 1040,
 ): Promise<FrameNode> {
   for (const child of page.children) {
     if (child.type === 'FRAME' && child.getPluginData('ds_forge:custom_notes_id') === logicalId) {
@@ -227,7 +239,7 @@ async function ensurePreservedCustomNotesFrame(
   notesFrame.clipsContent = false;
   notesFrame.x = 80;
   notesFrame.y = yOffset;
-  notesFrame.resize(1040, 120);
+  notesFrame.resize(width, 120);
   notesFrame.layoutMode = 'VERTICAL';
   notesFrame.primaryAxisSizingMode = 'AUTO';
   notesFrame.counterAxisSizingMode = 'FIXED';
@@ -471,150 +483,27 @@ export async function renderFoundationsPage(
   if (!page) return;
   await activateDocPage(page);
 
-  const locale = ctx.plan.config.locale;
   const helperRack = page.children.find(
     (c): c is FrameNode =>
       c.type === 'FRAME' &&
       getNodeManagedMeta(c)?.logicalId === 'frame.foundations.helper-icons',
   );
-  const foundationsY = helperRack ? helperRack.y + helperRack.height + 48 : 220;
+  const foundationsY = helperRack ? helperRack.y + helperRack.height + 56 : 80;
 
-  const root = getOrResetManagedRootFrame(
+  const bottomY = await renderFoundationsSpecificationSheets(
     page,
-    'docs.foundations',
-    `${ctx.plan.config.namespace} · Foundations & Token Architecture`,
-    1040,
-    ctx,
-    'docs-section',
-    80,
     foundationsY,
-  );
-
-  root.appendChild(
-    await createDocText(
-      ctx,
-      locale === 'th'
-        ? `พื้นฐานระบบออกแบบและโครงสร้างโทเคน (อัปเดตล่าสุด ${refreshedAtIso})`
-        : `Design Foundations & Token Architecture (Last refreshed ${refreshedAtIso})`,
-      { weight: 'Bold', size: 22, lineHeight: 30, stretch: true },
-    ),
-  );
-
-  // 1. Token Layering Diagram Card
-  const archCard = await createSectionCard(
     ctx,
-    locale === 'th' ? 'โครงสร้างตัวแปร 3 ระดับ (Three-Tier Alias Chain)' : 'Three-Tier Variable Alias Architecture',
+    refreshedAtIso,
   );
-  archCard.appendChild(
-    await createDocText(
-      ctx,
-      `${ctx.plan.collections.componentName} [Base]  →  ${ctx.plan.collections.semanticName} [Light | Dark]  →  ${ctx.plan.collections.primitivesName} [Base]\n` +
-        `Example: button/primary/background → action/primary/background → color/brand/600 (Light) | color/brand/400 (Dark)`,
-      { size: 12, lineHeight: 20, mono: true, stretch: true },
-    ),
-  );
-  root.appendChild(archCard);
 
-  // 2. Semantic Color Swatches Grid
-  const semanticColors = ctx.plan.tokens.filter(
-    (t) => t.collection === 'semantic' && t.type === 'COLOR',
-  );
-  const colorCard = await createSectionCard(
+  await ensurePreservedCustomNotesFrame(
+    page,
+    'notes.foundations',
+    bottomY + 48,
     ctx,
-    locale === 'th' ? `สีตามความหมาย (${semanticColors.length} ตัวแปร)` : `Semantic Color Roles (${semanticColors.length} Variables)`,
+    FOUNDATIONS_SHEET_WIDTH,
   );
-  const swatchWrap = createAutoFrame('Swatches Grid', 'HORIZONTAL', 12, 0);
-  swatchWrap.layoutWrap = 'WRAP';
-  swatchWrap.layoutAlign = 'STRETCH';
-  swatchWrap.counterAxisSpacing = 12;
-
-  for (const tok of semanticColors) {
-    const chip = createAutoFrame(`Swatch · ${tok.name}`, 'VERTICAL', 6, 10);
-    chip.resize(210, 82);
-    chip.layoutMode = 'VERTICAL';
-    chip.primaryAxisSizingMode = 'AUTO';
-    chip.counterAxisSizingMode = 'FIXED';
-    chip.cornerRadius = 8;
-    chip.strokeWeight = 1;
-    applyNodeVariableBindings(
-      chip,
-      { fill: 'semantic.surface.background', stroke: 'semantic.border.default' },
-      ctx.tokensCtx,
-    );
-
-    const previewBar = figma.createRectangle();
-    previewBar.name = 'Color Bar';
-    previewBar.resize(190, 28);
-    previewBar.cornerRadius = 4;
-    previewBar.strokeWeight = 1;
-    applyNodeVariableBindings(
-      previewBar,
-      { fill: tok.logicalId, stroke: 'semantic.border.default' },
-      ctx.tokensCtx,
-    );
-    chip.appendChild(previewBar);
-    chip.appendChild(
-      await createDocText(ctx, tok.name, { weight: 'Medium', size: 11, lineHeight: 15, mono: true }),
-    );
-    chip.appendChild(
-      await createDocText(ctx, tok.sourceTokenName, {
-        size: 10,
-        lineHeight: 14,
-        colorTokenId: 'semantic.text.muted',
-        mono: true,
-      }),
-    );
-    swatchWrap.appendChild(chip);
-  }
-  colorCard.appendChild(swatchWrap);
-  root.appendChild(colorCard);
-
-  // 3. Typography Scale
-  const typoCard = await createSectionCard(
-    ctx,
-    locale === 'th' ? 'ระบบตัวอักษร (Typography Styles)' : 'Typography Styles',
-  );
-  for (const ts of ctx.plan.textStyles) {
-    const row = createAutoFrame(`Type · ${ts.name}`, 'HORIZONTAL', 16, 8);
-    row.layoutAlign = 'STRETCH';
-    row.counterAxisAlignItems = 'CENTER';
-    const sample = await createDocText(
-      ctx,
-      locale === 'th'
-        ? `${ts.name} — ตัวอย่างข้อความภาษาไทยและ English ABC 123`
-        : `${ts.name} — The quick brown fox jumps over 123`,
-      { weight: ts.fontStyle, size: ts.fontSize, lineHeight: ts.lineHeightPx },
-    );
-    const styleObj = ctx.tokensCtx.textStylesByLogicalId.get(ts.logicalId);
-    if (styleObj) {
-      try {
-        await figma.loadFontAsync(styleObj.fontName);
-      } catch {
-        // Already loaded via fallback
-      }
-      await sample.setTextStyleIdAsync(styleObj.id);
-    }
-    row.appendChild(sample);
-    typoCard.appendChild(row);
-  }
-  root.appendChild(typoCard);
-
-  // 4. Spacing, Radius & Elevation Summary
-  const scaleCard = await createSectionCard(
-    ctx,
-    locale === 'th' ? 'ระยะห่าง ความโค้งมุม และเงา (Spacing, Radius & Elevation)' : 'Spacing, Radius & Elevation Tokens',
-  );
-  const floatTokens = ctx.plan.tokens
-    .filter((t) => t.type === 'FLOAT' && (t.category === 'spacing' || t.category === 'radius' || t.category === 'size'))
-    .map((t) => `${t.name} = ${t.valuesByMode.Base && t.valuesByMode.Base.kind === 'float' ? `${t.valuesByMode.Base.value}px` : 'alias'}`)
-    .join('   •   ');
-  scaleCard.appendChild(
-    await createDocText(ctx, floatTokens, { size: 12, lineHeight: 20, mono: true, stretch: true }),
-  );
-  root.appendChild(scaleCard);
-  finalizeAutoLayoutStretch(root);
-
-  await ensurePreservedCustomNotesFrame(page, 'notes.foundations', root.y + root.height + 40, ctx);
 }
 
 export async function renderComponentDocumentationPage(
